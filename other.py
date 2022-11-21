@@ -107,7 +107,7 @@ def delete_post(id: int):
     if del_post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"Such id: {id} not present")
     return Response(status_code=status.HTTP_204_NO_CONTENT)
-
+    
 @app.put('/posts/{id}')
 def update_post(id: int, post: Post):
     cursor.execute("""UPDATE posts SET title = %s, content = %s, published = %s WHERE id = %s RETURNING *""",
